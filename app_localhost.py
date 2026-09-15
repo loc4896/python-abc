@@ -1,14 +1,18 @@
 import mysql.connector
 
+import os
+import mysql.connector
+
 class KetNoiDatabase:
 
     @staticmethod
     def ketnoi():
         return mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="abc_database"
+            host=os.environ.get("MYSQLHOST"),
+            port=int(os.environ.get("MYSQLPORT", 3306)),
+            user=os.environ.get("MYSQLUSER"),
+            password=os.environ.get("MYSQLPASSWORD"),
+            database=os.environ.get("MYSQLDATABASE")
         )
 
 class DoiTuong:
